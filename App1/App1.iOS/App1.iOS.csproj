@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <None Include="app.config" />
     <None Include="Entitlements.plist" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -116,9 +117,18 @@
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="ModernHttpClient, Version=2.4.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\modernhttpclient.2.4.2\lib\Xamarin.iOS10\ModernHttpClient.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.9.0.1\lib\portable-net45+wp80+win8+wpa81\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="WordpressRestApi, Version=0.3.4.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\WordpressRestApi.0.3.4.0\lib\portable-net45+wp8+win8\WordpressRestApi.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.193\lib\Xamarin.iOS10\Xamarin.Forms.Core.dll</HintPath>
     </Reference>
@@ -138,6 +148,54 @@
       <Project>{1d641e28-f63f-48d8-89fd-07517e8d973a}</Project>
       <Name>App1</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\open.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\template.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\famous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\message.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\techincal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\tip.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="info.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\softver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\fyz.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\har.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\inf.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\study.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\exam.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\events.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\remind.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
