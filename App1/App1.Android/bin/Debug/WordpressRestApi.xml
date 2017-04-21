@@ -1,0 +1,558 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WordpressRestApi</name>
+    </assembly>
+    <members>
+        <member name="T:WordpressRestApi.ApiAsyncEnumerable`2">
+            <summary>Enumerable for API driven collection.</summary>
+            <typeparam name="T">Type of the enumeration</typeparam>
+            <typeparam name="PL">Type of the payload produced by the API.</typeparam>
+        </member>
+        <member name="T:WordpressRestApi.ApiClientBase">
+            <summary>Base class containing common methods for invoking APIs.</summary>
+        </member>
+        <member name="F:WordpressRestApi.ApiClientBase.API_ROOT">
+            <summary>API ROOT URL.</summary>
+        </member>
+        <member name="M:WordpressRestApi.ApiClientBase.#ctor(WordpressRestApi.TokenInfo)">
+            <summary>Constructor.</summary>
+            <param name="token">Token owned by this component.</param>
+        </member>
+        <member name="M:WordpressRestApi.ApiClientBase.GetRequestAsync(System.String)">
+            <summary>Invokes an HTTP-GET with token and returns the returned payload.</summary>
+            <param name="url">Target URL.</param>
+            <returns>Payload returned.</returns>
+        </member>
+        <member name="M:WordpressRestApi.ApiClientBase.GetRequestAsync``1(System.String)">
+            <summary>Strong type HTTP-GET:  invokes HTTP-GET with token and deserialize the returned payload (JSON).</summary>
+            <typeparam name="T">Type of object to deserialize the payload into.</typeparam>
+            <param name="url">Target URL.</param>
+            <returns>Deserialized payload.</returns>
+        </member>
+        <member name="M:WordpressRestApi.ApiClientBase.PostRequestAsync(System.String,System.Tuple{System.String,System.String}[])">
+            <summary>Invokes an HTTP-POST with token and returns the returned payload.</summary>
+            <param name="url">Target URL.</param>
+            <param name="parameters">Post parameters, key-value pairs.</param>
+            <returns>Payload returned.</returns>
+        </member>
+        <member name="M:WordpressRestApi.ApiClientBase.PostRequestAsync``1(System.String,System.Tuple{System.String,System.String}[])">
+            <summary>Strong type HTTP-POST:  invokes HTTP-POST with token and deserialize the returned payload (JSON).</summary>
+            <typeparam name="T">Type of object to deserialize the payload into.</typeparam>
+            <param name="url">Target URL.</param>
+            <param name="parameters">Post parameters, key-value pairs.</param>
+            <returns>Deserialized payload.</returns>
+        </member>
+        <member name="T:WordpressRestApi.AsyncEnumerable">
+            <summary>Contains extension methods for <see cref="T:WordpressRestApi.IAsyncEnumerable`1"/>.</summary>
+        </member>
+        <member name="M:WordpressRestApi.AsyncEnumerable.ToArrayAsync``1(WordpressRestApi.IAsyncEnumerable{``0},System.Nullable{System.Int32})">
+            <summary>Enumerates all elements from the enumerable.</summary>
+            <typeparam name="T"></typeparam>
+            <param name="enumerable"></param>
+            <param name="takeCount">Maximum number of elements to retrieve.</param>
+            <returns>Array of all the elements.</returns>
+        </member>
+        <member name="M:WordpressRestApi.AsyncEnumerable.Select``2(WordpressRestApi.IAsyncEnumerable{``0},System.Func{``0,``1})">
+            <summary>Projects an enumeration.</summary>
+            <typeparam name="T">Source enumeration type.</typeparam>
+            <typeparam name="U">Target enumeration type.</typeparam>
+            <param name="enumerable">The enumeration to project.</param>
+            <param name="projection">The projection of an element.</param>
+            <returns>Projected enumeration.</returns>
+        </member>
+        <member name="M:WordpressRestApi.AsyncEnumerable.Where``1(WordpressRestApi.IAsyncEnumerable{``0},System.Func{``0,System.Boolean})">
+            <summary>Filters an enumeration.</summary>
+            <typeparam name="T">Source enumeration type.</typeparam>
+            <param name="enumerable">The enumeration to project.</param>
+            <param name="predicate"></param>
+            <returns>Filtered enumeration.</returns>
+        </member>
+        <member name="T:WordpressRestApi.IAsyncEnumerator`1">
+            <summary>Asynchronous enumerator.</summary>
+            <typeparam name="T">Type of element.</typeparam>
+        </member>
+        <member name="P:WordpressRestApi.IAsyncEnumerator`1.CurrentBatch">
+            <summary>Returns the current batch.</summary>
+            <remarks>Batch of elements.</remarks>
+        </member>
+        <member name="M:WordpressRestApi.IAsyncEnumerator`1.MoveNextAsync">
+            <summary>Moves to the next batch.</summary>
+            <returns><c>true</c> iif there is a new batch available.</returns>
+        </member>
+        <member name="T:WordpressRestApi.IAsyncEnumerable`1">
+            <summary>Asynchronous enumerable.</summary>
+        </member>
+        <member name="M:WordpressRestApi.IAsyncEnumerable`1.GetAsyncEnumerator">
+            <summary>Returns a stateful async enumerator.</summary>
+            <returns></returns>
+        </member>
+        <member name="T:WordpressRestApi.PostField">
+            <summary>Fields that can be retrieved from a post.</summary>
+            <remarks>See <see cref="T:WordpressRestApi.PostInfo"/>.</remarks>
+        </member>
+        <member name="F:WordpressRestApi.PostField.ID">
+            <summary><see cref="P:WordpressRestApi.PostInfo.ID"/>.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostField.Date">
+            <summary><see cref="P:WordpressRestApi.PostInfo.Date"/>.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostField.ModifiedDate">
+            <summary><see cref="P:WordpressRestApi.PostInfo.ModifiedDate"/>.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostField.Title">
+            <summary><see cref="P:WordpressRestApi.PostInfo.Title"/>.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostField.Url">
+            <summary><see cref="P:WordpressRestApi.PostInfo.Url"/>.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostField.Content">
+            <summary><see cref="P:WordpressRestApi.PostInfo.Content"/>.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostField.Excerpt">
+            <summary><see cref="P:WordpressRestApi.PostInfo.Excerpt"/>.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostField.Slug">
+            <summary><see cref="P:WordpressRestApi.PostInfo.Slug"/>.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostField.Status">
+            <summary><see cref="P:WordpressRestApi.PostInfo.Status"/>.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostField.Tags">
+            <summary><see cref="P:WordpressRestApi.PostInfo.Tags"/>.</summary>
+        </member>
+        <member name="T:WordpressRestApi.PostParametrization">
+            <summary>Parametrization to query posts.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostParametrization.Number">
+            <summary>Size (# of posts) in one REST API call.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostParametrization.Fields">
+            <summary>List of fields to return.  Default returns all the fields.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostParametrization.Status">
+            <summary>Status of post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostParametrization.PostType">
+            <summary>Type of post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostParametrization.OrderByAscending">
+            <summary><c>true</c> for ascending order, <c>false</c> for descending.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostParametrization.OrderByField">
+            <summary>
+            Wordpress currently supports only <see cref="F:WordpressRestApi.PostField.ID"/>, <see cref="F:WordpressRestApi.PostField.Date"/>,
+            <see cref="F:WordpressRestApi.PostField.ModifiedDate"/> &amp; <see cref="F:WordpressRestApi.PostField.Title"/>.
+            </summary>
+        </member>
+        <member name="P:WordpressRestApi.PostParametrization.TagSlug">
+            <summary>When specified, only posts associated with that tag will be fetched.</summary>
+        </member>
+        <member name="T:WordpressRestApi.TagInfo">
+            <summary>Tag.</summary>
+            <remarks>Defined in https://developer.wordpress.com/docs/api/1.1/get/sites/%24site/tags/slug:%24tag/ </remarks>
+        </member>
+        <member name="P:WordpressRestApi.TagInfo.ID">
+            <summary>Post ID.</summary>
+        </member>
+        <member name="P:WordpressRestApi.TagInfo.Name">
+            <summary>Tag's name.</summary>
+        </member>
+        <member name="P:WordpressRestApi.TagInfo.Slug">
+            <summary>The name (slug) for the tag, used in URLs.</summary>
+        </member>
+        <member name="P:WordpressRestApi.TagInfo.Description">
+            <summary>Tag's description.</summary>
+        </member>
+        <member name="P:WordpressRestApi.TagInfo.PostCount">
+            <summary>Number of posts associated to that tag.</summary>
+        </member>
+        <member name="T:WordpressRestApi.TagClient">
+            <summary>Client for the tag API.</summary>
+            <remarks>See https://developer.wordpress.com/docs/api/ for the endpoints available.</remarks>
+        </member>
+        <member name="M:WordpressRestApi.TagClient.#ctor(WordpressRestApi.TokenInfo)">
+            <summary>Constructor.</summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:WordpressRestApi.TagClient.GetAllTags">
+            <summary>Returns all the tags of the associated site.</summary>
+            <remarks>
+            See https://developer.wordpress.com/docs/api/1.1/get/sites/%24site/tags/
+            </remarks>
+            <returns>Asynchronous enumerable of tags.</returns>
+        </member>
+        <member name="M:WordpressRestApi.TagClient.DeleteTagAsync(System.String)">
+            <summary>Deletes a given tag in the associated site.</summary>
+            <remarks>
+            See https://developer.wordpress.com/docs/api/1.1/post/sites/%24site/tags/slug:%24tag/delete/
+            </remarks>
+            <param name="tagSlug">Slug of the tag to delete.</param>
+            <returns>Tag information.</returns>
+        </member>
+        <member name="T:WordpressRestApi.SiteClient">
+            <summary>Client for the site API.</summary>
+            <remarks>See https://developer.wordpress.com/docs/api/ for the endpoints available.</remarks>
+        </member>
+        <member name="M:WordpressRestApi.SiteClient.#ctor(WordpressRestApi.TokenInfo)">
+            <summary>Constructor.</summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:WordpressRestApi.SiteClient.GetPostCountsAsync">
+            <summary>Returns a report of the number of posts.</summary>
+            <remarks>
+            See https://developer.wordpress.com/docs/api/1.1/get/sites/%24site/post-counts/%24post_type
+            </remarks>
+            <returns>Report.</returns>
+        </member>
+        <member name="T:WordpressRestApi.PostClient">
+            <summary>Client for the Post API.</summary>
+            <remarks>See https://developer.wordpress.com/docs/api/ for the endpoints available.</remarks>
+        </member>
+        <member name="M:WordpressRestApi.PostClient.#ctor(WordpressRestApi.TokenInfo)">
+            <summary>Constructor.</summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:WordpressRestApi.PostClient.GetAllPosts">
+            <summary>Returns all the posts of the associated site.</summary>
+            <remarks>See https://developer.wordpress.com/docs/api/1.1/get/sites/%24site/posts/ </remarks>
+            <returns>Asynchronous enumerable of posts.</returns>
+        </member>
+        <member name="M:WordpressRestApi.PostClient.GetPosts(WordpressRestApi.PostParametrization)">
+            <summary>Returns all the posts of the associated site fitting the parametrization.</summary>
+            <param name="parametrization">Parametrization on the post query.</param>
+            <remarks>See https://developer.wordpress.com/docs/api/1.1/get/sites/%24site/posts/ </remarks>
+            <returns>Asynchronous enumerable of posts.</returns>
+        </member>
+        <member name="M:WordpressRestApi.PostClient.UpdateTagsAsync(System.Int32,System.Collections.Generic.IEnumerable{System.String})">
+            <summary>Update the tags of a posts.</summary>
+            <param name="postID">The ID of the Post.</param>
+            <param name="tagSlugs">The list of tag slugs the post should have.</param>
+            <returns>The updated post.</returns>
+        </member>
+        <member name="T:WordpressRestApi.PostCountInfo">
+            <summary>Post Counts.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostCountInfo.Publish">
+            <summary>Counts of published posts.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostCountInfo.Draft">
+            <summary>Counts of draft posts.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostCountInfo.Schedule">
+            <summary>Counts of scheduled posts.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostCountInfo.Delete">
+            <summary>Counts of deleted posts.</summary>
+        </member>
+        <member name="T:WordpressRestApi.PostCountReportInfo">
+            <summary>Post Count report:  including counts for all and current user's.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostCountReportInfo.All">
+            <summary>Counts of the posts posted by anyone.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostCountReportInfo.Mine">
+            <summary>Counts of the posts posted by the current user.</summary>
+        </member>
+        <member name="T:WordpressRestApi.PostFormat">
+            <summary>Post format.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.Standard">
+            <summary>Standard</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.Aside">
+            <summary>Aside</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.Chat">
+            <summary>Chat</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.Gallery">
+            <summary>Gallery</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.Link">
+            <summary>Link</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.Image">
+            <summary>Image</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.quote">
+            <summary>quote</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.Status">
+            <summary>Status</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.Video">
+            <summary>Video</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostFormat.Audio">
+            <summary>Audio</summary>
+        </member>
+        <member name="T:WordpressRestApi.PostInfo">
+            <summary>Blog post.</summary>
+            <remarks>Defined in https://developer.wordpress.com/docs/api/1.1/get/sites/%24site/posts/%24post_ID </remarks>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.ID">
+            <summary>Post ID.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Author">
+            <summary>Author of the post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Date">
+            <summary>Datetime the post was created.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.ModifiedDate">
+            <summary>Datetime the post was last modified.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Title">
+            <summary>Title.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Url">
+            <summary>Url of the post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.ShortUrl">
+            <summary>The wp.me short URL.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Content">
+            <summary>Content of the post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Excerpt">
+            <summary>Content-excerpt of the post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Slug">
+            <summary>The name (slug) for the post, used in URLs.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Guid">
+            <summary>Post's Guid.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Status">
+            <summary>Post's status.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.IsSticky">
+            <summary>Is the post sticky?</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Password">
+            <summary>Plain text password of the post (or empty).</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Parent">
+            <summary>Parent post if any.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Type">
+            <summary>Post type.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Discussion">
+            <summary>Discussion hash.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.IsLikesEnabled">
+            <summary>Is the post open to likes?</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.IsSharingEnabled">
+            <summary> Should sharing buttons show on this post?</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.LikeCount">
+            <summary>The number of likes for this post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.IsILike">
+            <summary>Does the current user like this post?</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.IsReblogged">
+            <summary>Did the current user reblog this post?</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.IsFollowing">
+            <summary>Is the current user following this blog?</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.GlobalID">
+            <summary>A unique WordPress.com-wide representation of a post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.FeaturedImageUrl">
+            <summary>The URL to the featured image for this post if it has one.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.PostThumbnail">
+            <summary>The attachment object for the featured image if it has one.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Format">
+            <summary>Post's format.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Geo">
+            <summary>Geography.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.MenuOrder">
+            <summary>The order pages should appear in.</summary>
+            <remarks>For pages only.</remarks>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.PageTemplate">
+            <summary>The page template this page is using.</summary>
+            <remarks>For pages only.</remarks>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.PublicizeUrls">
+            <summary>Array of Twitter and Facebook URLs published by this post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Tags">
+            <summary>Hash of tags (keyed by tag name) applied to the post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Categories">
+            <summary>Hash of categories (keyed by category name) applied to the post.</summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Attachments">
+            <summary>
+            Hash of post attachments (keyed by attachment ID). Returns the most recent 20 attachments.
+            Use the `/sites/$site/media` endpoint to query the attachments beyond the default of 20 that are
+            returned here.
+            </summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.AttachmentCount">
+            <summary>
+            The total number of attachments for this post. Use the `/sites/$site/media` endpoint
+            to query the attachments beyond the default of 20 that are returned here.
+            </summary>
+        </member>
+        <member name="P:WordpressRestApi.PostInfo.Capabilities">
+            <summary>List of post-specific permissions for the user; publish_post, edit_post, delete_post.</summary>
+        </member>
+        <member name="T:WordpressRestApi.PostStatus">
+            <summary>Status of a post.</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostStatus.Publish">
+            <summary>Publish</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostStatus.Draft">
+            <summary>Draft</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostStatus.Pending">
+            <summary>Pending</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostStatus.Private">
+            <summary>Private</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostStatus.Future">
+            <summary>Future</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostStatus.Trash">
+            <summary>Trash</summary>
+        </member>
+        <member name="F:WordpressRestApi.PostStatus.AutoDraft">
+            <summary>AutoDraft</summary>
+        </member>
+        <member name="T:WordpressRestApi.TokenInfo">
+            <summary>Package returned with the token.</summary>
+        </member>
+        <member name="P:WordpressRestApi.TokenInfo.AccessToken">
+            <summary>Access token.</summary>
+        </member>
+        <member name="P:WordpressRestApi.TokenInfo.BlogID">
+            <summary>ID of the blog related to the access token.</summary>
+        </member>
+        <member name="P:WordpressRestApi.TokenInfo.BlogUrl">
+            <summary>URL of the blog related to the access token.</summary>
+        </member>
+        <member name="T:WordpressRestApi.TokenOwnerBase">
+            <summary>Base class for components owning a token.</summary>
+        </member>
+        <member name="M:WordpressRestApi.TokenOwnerBase.#ctor(WordpressRestApi.TokenInfo)">
+            <summary>Constructor.</summary>
+            <param name="token">Token owned by this component.</param>
+        </member>
+        <member name="P:WordpressRestApi.TokenOwnerBase.Token">
+            <summary>Returns a token.</summary>
+        </member>
+        <member name="T:WordpressRestApi.UserClient">
+            <summary>Client for the User API.</summary>
+            <remarks>See https://developer.wordpress.com/docs/api/ for the endpoints available..</remarks>
+        </member>
+        <member name="M:WordpressRestApi.UserClient.#ctor(WordpressRestApi.TokenInfo)">
+            <summary>Constructor.</summary>
+            <param name="token"></param>
+        </member>
+        <member name="M:WordpressRestApi.UserClient.GetMeAsync">
+            <summary>Get metadata about the current user.</summary>
+            <remarks>See https://developer.wordpress.com/docs/api/1.1/get/me/ for API.</remarks>
+            <returns>Current user metadata.</returns>
+        </member>
+        <member name="T:WordpressRestApi.UserMetadataInfo">
+            <summary>User metadata.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.ID">
+            <summary>User ID.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.DisplayName">
+            <summary>User display name.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.UserName">
+            <summary>User name.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.Email">
+            <summary>User email.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.PrimirayBlogID">
+            <summary>Primary blog ID.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.Language">
+            <summary>User language.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.GravatarImageUrl">
+            <summary>Url of the Gravatar image.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.GravatarProfileUrl">
+            <summary>Url of the Gravatar profile.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.IsVerified">
+            <summary>Has the account been verified (via WordPress.com Connect)?</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.IsEmailVerified">
+            <summary>Has the account been verified (via email)?</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.Date">
+            <summary>Datetime the user joined WordPress.com</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.SiteCount">
+            <summary>Number of sites where the user is a member.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.VisibleSiteCount">
+            <summary>Number of sites where the user is a member, set to visible in user settings.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.HasUnseenNotes">
+            <summary>Does the account have unseen notifications?</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.NewestNoteType">
+            <summary>Notification type slug for newest unseen notification or blank if no unseen notes.</summary>
+        </member>
+        <member name="P:WordpressRestApi.UserMetadataInfo.IsPhoneAccount">
+            <summary>If this is a phone account then the user doenst have a verified email address.</summary>
+        </member>
+        <member name="T:WordpressRestApi.WordpressClient">
+            <summary>Entry point for the Wordpress API.</summary>
+        </member>
+        <member name="M:WordpressRestApi.WordpressClient.#ctor(WordpressRestApi.TokenInfo)">
+            <summary>Construct a client from a token.</summary>
+            <param name="token">Token.</param>
+        </member>
+        <member name="P:WordpressRestApi.WordpressClient.Token">
+            <summary>Token package.</summary>
+        </member>
+        <member name="P:WordpressRestApi.WordpressClient.User">
+            <summary>User client.</summary>
+        </member>
+        <member name="P:WordpressRestApi.WordpressClient.Site">
+            <summary>Site client.</summary>
+        </member>
+        <member name="P:WordpressRestApi.WordpressClient.Post">
+            <summary>Post client.</summary>
+        </member>
+        <member name="P:WordpressRestApi.WordpressClient.Tag">
+            <summary>Tag client.</summary>
+        </member>
+        <member name="M:WordpressRestApi.WordpressClient.GetUserAuthorizeUrl(System.String,System.String)">
+            <summary>Returns the URL to send the user to in order to authorize the application.</summary>
+            <param name="appClientID">Client-ID of the Wordpress application.</param>
+            <param name="returnUrl">Return URL Wordpress will return the user to, posting its code.</param>
+            <returns></returns>
+        </member>
+        <member name="M:WordpressRestApi.WordpressClient.GetTokenAsync(System.String,System.String,System.String,System.String)">
+            <summary>Acquires the token from the Wordpress Token service.</summary>
+            <param name="clientID"></param>
+            <param name="clientSecret"></param>
+            <param name="redirectURL"></param>
+            <param name="code">Temporary code returned by Wordpress authentication page.</param>
+            <returns>Client.</returns>
+        </member>
+    </members>
+</doc>

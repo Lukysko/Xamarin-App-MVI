@@ -1,0 +1,2 @@
+C:\Users\lukys\Documents\Visual Studio 2017\Projects\Zadanie1\App1\App1\App1.UWP\App1.UWP.csproj;x64
+C:\Users\lukys\Documents\Visual Studio 2017\Projects\Zadanie1\App1\App1\App1\App1.csproj;neutral
